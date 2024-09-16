@@ -1,0 +1,83 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      shipDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+shipMotion              yes;
+startUpdate             10;
+weightFactor            (1 2 1);
+writeEarthSystem        true;
+sixDOFOrder		2;
+
+//writing of additional text file with motion path of CoG
+writeCoG            yes;
+writeInterval           1;
+onePhaseForce      true;
+
+bodies
+{
+    hull  
+   {
+    endTimeOsci          1;
+    aMax                10;
+    aMin                -10;
+
+    CoG                 (0 0 0);
+    crot                (0 0 0);   // center of rotation. Important! moments are calculated around this point instead of CoG!
+    bodyRotation        (0 0 0);    //rotation of motion patch local coordinate system in degrees
+
+    //Translation parameters
+    calcTranslationDOF  (0 0 1);    // Switch: 0-fixed; 1-predicted; 2-prescribed
+    initialVelocity     (0 0 0);
+    constantForce       (0 0 0);
+    mass                0.315;
+    linearDamping       (0 0 0.016);
+    linearSpring        (0 0 0);
+    ampTrans            (0 0 0);  // amplitude
+    omegaTrans          (0 0 0);  // omega
+    phaseTrans          (0 0 0);   // phase(in degree)
+    relaseTimeTrans     (0 0 0);    // release time
+
+
+    //Rotation parameters
+    calcRotationDOF     (0 0 0);
+    initialRotationSpeed    (0 0 0);
+    constantMoment      (0 0 0);
+    momentOfInertia     (4.825e10 4.742e10 19.655);
+    linearDamping_rot   (0 0 0);
+    linearSpring_rot    (0 0 0);
+    ampRot                  (0 0 180) ; //degree
+    omegaRot                (0 0 6.2832);
+    phaseRot                (0 0 0); //degree
+    releaseTimeRot           (0 0.00 0);
+
+//	refU                 0;
+//	wettedArea           4.75605;
+
+
+    moored               yes; // yes | no
+    mooringLines
+    (
+
+    #include "mooringDict"
+
+    );
+    }
+
+}
+
+
+
+
+// ************************************************************************* //

@@ -1,0 +1,42 @@
+        mooringLine1
+        {
+            mooringType         spring;
+            fixedPoint          (0 0 0.1905);
+            movingPoint         (0 0 0);
+            initialLength       0.1905;
+            elasticCoefficient  3.78;
+            pretensionType      1;
+            pretensionValue     2;
+        }
+
+        mooringLine2
+        {
+            mooringType         spring;
+            fixedPoint          (0 0 -0.1905);
+            movingPoint         (0 0 0);
+            initialLength       0.1905;
+            elasticCoefficient  3.78;
+            pretensionType      1;
+            pretensionValue     2;
+        }
+        //mooringLine3
+        //{
+          //  mooringType         spring;
+        //    fixedPoint          (0.1905 0 0);
+          //  movingPoint         (0 0 0);
+          //  initialLength       0.1905;
+          //  elasticCoefficient  10;
+          //  pretensionType      1;
+          //  pretensionValue     6;
+       // }
+
+      //  mooringLine4
+       // {
+         //   mooringType         spring;
+           // fixedPoint          (-0.1905 0 0);
+          //  movingPoint         (0 0 0);
+           // initialLength       0.1905;
+          //  elasticCoefficient  10;
+          //  pretensionType      1;
+          //  pretensionValue     6;
+      //  }
